@@ -44,7 +44,7 @@ const AddUser = props => {
           <input id="age" type="number" value={age} onChange={ageChangeHandler} />
           <Button type="submit">Add User</Button>
       </form>
-      {invalidInput ? <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModalHandler} /> : ""}
+      {invalidInput && <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModalHandler} />}
     </>
   )
 
