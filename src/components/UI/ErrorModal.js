@@ -2,7 +2,7 @@ import styles from './ErrorModal.module.css'
 import Button from "./Button";
 
 const ErrorModal = ({title, content, onClose}) => {
-  const handleCloseModal = () => {
+  const closeModalHandler = () => {
     onClose()
   }
 
@@ -16,7 +16,7 @@ const ErrorModal = ({title, content, onClose}) => {
               {content}
             </div>
             <div className={styles.actions}>
-              <Button type="button" onClick={handleCloseModal} >Okay</Button>
+              <Button type="button" onClick={closeModalHandler} >Okay</Button>
             </div>
         </div>
     </div>

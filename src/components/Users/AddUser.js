@@ -9,13 +9,14 @@ const AddUser = props => {
   const [age, setAge] = useState("")
   const [invalidInput, setInvalidInput] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
-  const handleUsernameInput = (e) => {
+
+  const usernameChangeHandler = (e) => {
     setUsername(e.target.value)
   }
-  const handleAgeInput = (e) => {
+  const ageChangeHandler = (e) => {
     setAge(e.target.value)
   }
-  const handleSubmit = (e) => {
+  const addUserHandler = (e) => {
     e.preventDefault()
     if (username.trim().length === 0) {
       setErrorMessage("Please enter a valid name and age (non-empty values).")
@@ -36,11 +37,11 @@ const AddUser = props => {
   }
   return (
     <>
-      <form onSubmit={handleSubmit} className={styles.input}>
+      <form onSubmit={addUserHandler} className={styles.input}>
           <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={username} onChange={handleUsernameInput} />
+          <input id="username" type="text" value={username} onChange={usernameChangeHandler} />
           <label htmlFor="age">Age (Years)</label>
-          <input id="age" type="number" value={age} onChange={handleAgeInput} />
+          <input id="age" type="number" value={age} onChange={ageChangeHandler} />
           <Button type="submit">Add User</Button>
       </form>
       {invalidInput ? <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModal} /> : ""}
