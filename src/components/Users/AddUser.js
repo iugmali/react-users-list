@@ -23,16 +23,16 @@ const AddUser = props => {
       setInvalidInput(true)
       return
     }
-    if (age < 1) {
+    if (Number(age) < 1) {
       setErrorMessage("Please enter a valid age (> 0).")
       setInvalidInput(true)
       return
     }
     setUsername("")
     setAge("")
-    props.onAddUser({username: username, age: age, id: Math.random().toString()})
+    props.onAddUser({username: username.trim(), age: age, id: Math.random().toString()})
   }
-  const closeModal = () => {
+  const closeModalHandler = () => {
     setInvalidInput(false)
   }
   return (
@@ -44,7 +44,7 @@ const AddUser = props => {
           <input id="age" type="number" value={age} onChange={ageChangeHandler} />
           <Button type="submit">Add User</Button>
       </form>
-      {invalidInput ? <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModal} /> : ""}
+      {invalidInput ? <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModalHandler} /> : ""}
     </>
   )
 

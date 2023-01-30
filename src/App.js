@@ -6,17 +6,13 @@ import UsersList from "./components/Users/UsersList";
 function App() {
   const [users, setUsers] = useState([])
 
-  useEffect(() => {
-    console.log(users)
-  }, [users])
-
-  const handleAddUser = (user) => {
+  const addUserHandler = (user) => {
     setUsers(prev => [...prev, user])
   }
 
   return (
     <div>
-      <AddUser onAddUser={handleAddUser} />
+      <AddUser onAddUser={addUserHandler} />
       <UsersList users={users} />
     </div>
   );

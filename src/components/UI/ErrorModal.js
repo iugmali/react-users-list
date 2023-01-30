@@ -7,20 +7,20 @@ const ErrorModal = ({title, content, onClose}) => {
   }
 
   return (
-    <div className={styles.backdrop}>
-        <div className={styles.modal}>
-            <div className={styles.header}>
-              <h2>{title}</h2>
-            </div>
-            <div className={styles.content}>
-              {content}
-            </div>
-            <div className={styles.actions}>
-              <Button type="button" onClick={closeModalHandler} >Okay</Button>
-            </div>
+    <>
+      <div className={styles.backdrop} onClick={closeModalHandler}></div>
+      <div className={styles.modal}>
+        <header className={styles.header}>
+          <h2>{title}</h2>
+        </header>
+        <div className={styles.content}>
+          <p>{content}</p>
         </div>
-    </div>
-
+        <footer className={styles.actions}>
+          <Button type="button" onClick={closeModalHandler} >Okay</Button>
+        </footer>
+      </div>
+    </>
   )
 }
 
