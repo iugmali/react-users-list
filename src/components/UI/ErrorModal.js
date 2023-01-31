@@ -1,5 +1,6 @@
 import styles from './ErrorModal.module.css'
 import Button from "./Button";
+import {createPortal} from "react-dom";
 
 const ErrorModal = ({title, content, onClose}) => {
   const closeModalHandler = () => {
@@ -8,8 +9,8 @@ const ErrorModal = ({title, content, onClose}) => {
 
   return (
     <>
-      <div className={styles.backdrop} onClick={closeModalHandler}></div>
-      <div className={styles.modal}>
+      {createPortal(<div className={styles.backdrop} onClick={closeModalHandler}></div>, document.body)}
+      {createPortal(<div className={styles.modal}>
         <header className={styles.header}>
           <h2>{title}</h2>
         </header>
@@ -19,7 +20,7 @@ const ErrorModal = ({title, content, onClose}) => {
         <footer className={styles.actions}>
           <Button type="button" onClick={closeModalHandler} >Okay</Button>
         </footer>
-      </div>
+      </div>, document.body)}
     </>
   )
 }
