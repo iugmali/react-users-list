@@ -1,5 +1,5 @@
 import styles from './AddUser.module.css'
-import {useState} from "react";
+import {useState, useRef} from "react";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 
@@ -9,6 +9,8 @@ const AddUser = props => {
   const [age, setAge] = useState("")
   const [invalidInput, setInvalidInput] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+
+  const usernameRef = useRef()
 
   const usernameChangeHandler = (e) => {
     setUsername(e.target.value)
@@ -31,6 +33,7 @@ const AddUser = props => {
     setUsername("")
     setAge("")
     props.onAddUser({username: username.trim(), age: age, id: Math.random().toString()})
+    usernameRef.current.focus()
   }
   const closeModalHandler = () => {
     setInvalidInput(false)
@@ -39,7 +42,7 @@ const AddUser = props => {
     <>
       <form onSubmit={addUserHandler} className={styles.input}>
           <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={username} onChange={usernameChangeHandler} />
+          <input ref={usernameRef} id="username" type="text" value={username} onChange={usernameChangeHandler} />
           <label htmlFor="age">Age (Years)</label>
           <input id="age" type="number" value={age} onChange={ageChangeHandler} />
           <Button type="submit">Add User</Button>
