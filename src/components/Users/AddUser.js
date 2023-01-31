@@ -38,6 +38,10 @@ const AddUser = props => {
   const closeModalHandler = () => {
     setInvalidInput(false)
   }
+  const clearListHandler = () => {
+    props.onClearList()
+  }
+
   return (
     <>
       <form onSubmit={addUserHandler} className={styles.input}>
@@ -45,7 +49,10 @@ const AddUser = props => {
           <input ref={usernameRef} id="username" type="text" value={username} onChange={usernameChangeHandler} />
           <label htmlFor="age">Age (Years)</label>
           <input id="age" type="number" value={age} onChange={ageChangeHandler} />
-          <Button type="submit">Add User</Button>
+          <div className={styles.actions}>
+            <Button type="submit">Add User</Button>
+            <Button type="button" onClick={clearListHandler}>Clear List</Button>
+          </div>
       </form>
       {invalidInput && <ErrorModal title="Invalid input" content={errorMessage} onClose={closeModalHandler} />}
     </>
